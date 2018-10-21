@@ -128,7 +128,8 @@ export const MenuItemLabel = withProps<{
     props.active ? props.theme.colors.primary.main : props.theme.colors.text.primary};
   margin: 0;
   padding: 12.5px ${props => props.theme.spacing.unit * 4}px;
-  ${({ depth, theme }) => (depth > 1 && 'padding-left: ' + theme.spacing.unit * 8 + 'px;') || ''}
+  ${({ depth, type, theme }) =>
+    (type === 'section' && depth > 1 && 'padding-left: ' + theme.spacing.unit * 8 + 'px;') || ''}
   display: flex;
   justify-content: space-between;
   font-family: ${props => props.theme.typography.headings.fontFamily};

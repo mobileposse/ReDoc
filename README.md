@@ -70,6 +70,7 @@ Additionally, all the 1.x releases are hosted on our GitHub Pages-based **CDN**:
 - [Shopify Draft Orders](https://help.shopify.com/api/draft-orders)
 - [Discourse](http://docs.discourse.org)
 - [APIs.guru](https://apis.guru/api-doc/)
+- [FastAPI](https://github.com/tiangolo/fastapi)
 
 ## Deployment
 
@@ -161,7 +162,7 @@ Also you can pass options:
 
 ```js
 <RedocStandalone
-  specUrl="http://rebilly.github.io/RebillyAPI/swagger.json"
+  specUrl="http://rebilly.github.io/RebillyAPI/openapi.json"
   options={{
     nativeScrollbars: true,
     theme: { colors: { main: '#dd5522' } },
@@ -175,7 +176,7 @@ You can also specify `onLoaded` callback which will be called each time Redoc ha
 
 ```js
 <RedocStandalone
-  specUrl="http://rebilly.github.io/RebillyAPI/swagger.json"
+  specUrl="http://rebilly.github.io/RebillyAPI/openapi.json"
   onLoaded={error => {
     if (!error) {
       console.log('Yay!');
@@ -189,11 +190,11 @@ You can also specify `onLoaded` callback which will be called each time Redoc ha
 ReDoc is available as pre-built Docker image in official [Docker Hub repository](https://hub.docker.com/r/redocly/redoc/). You may simply pull & run it:
 
     docker pull redocly/redoc
-    docker run -p 80:8080 redocly/redoc
+    docker run -p 8080:80 redocly/redoc
 
-Also you may rewrite some predefined environment variables defined in [Dockerfile](./Dockerfile). By default ReDoc starts with demo Petstore spec located at `http://petstore.swagger.io/v2/swagger.json`, but you may change this URL using environment variable `SPEC_URL`:
+Also you may rewrite some predefined environment variables defined in [Dockerfile](./config/docker/Dockerfile). By default ReDoc starts with demo Petstore spec located at `http://petstore.swagger.io/v2/swagger.json`, but you may change this URL using environment variable `SPEC_URL`:
 
-    docker run -p 80:8080 -e SPEC_URL=https://api.example.com/openapi.json redocly/redoc
+    docker run -p 8080:80 -e SPEC_URL=https://api.example.com/openapi.json redocly/redoc
 
 ## ReDoc CLI
 
@@ -205,7 +206,7 @@ Also you may rewrite some predefined environment variables defined in [Dockerfil
 You can inject Security Definitions widget into any place of your specification `description`. Check out details [here](docs/security-definitions-injection.md).
 
 ### Swagger vendor extensions
-ReDoc makes use of the following [vendor extensions](http://swagger.io/specification/#vendorExtensions):
+ReDoc makes use of the following [vendor extensions](https://swagger.io/specification/#specificationExtensions):
 * [`x-logo`](docs/redoc-vendor-extensions.md#x-logo) - is used to specify API logo
 * [`x-traitTag`](docs/redoc-vendor-extensions.md#x-traitTag) - useful for handling out common things like Pagination, Rate-Limits, etc
 * [`x-code-samples`](docs/redoc-vendor-extensions.md#x-code-samples) - specify operation code samples
